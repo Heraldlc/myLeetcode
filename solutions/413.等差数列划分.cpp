@@ -49,3 +49,31 @@ public:
         return res;
     }
 };
+
+// 或者我们可以使用dp的思想
+// dp[i]表示以Nums[i]结尾的等差数组的个数
+// 如果nums[i]可以加入的话，dp[i] = dp[i-1] + 1
+// 否则应当重新计算diff差值寻找新的等差数列了
+
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& nums) {
+        int n = nums.size();
+        if(n<3) return 0;
+        int diff = nums[1] - nums[0];
+        vector<int> dp(n, 0);
+        int res = 0;
+        for(int i=2; i<n; i++)
+        {
+            if(nums[i] - nums[i-1] == diff) 
+            {
+                dp[i] = dp[i-1] +1;
+                res += dp[i];
+            }
+            else {
+                diff = nums[i] - nums[i-1]; // 需要重新计算diff
+            }
+        }
+        return res;
+    }
+};
