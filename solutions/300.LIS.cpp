@@ -32,3 +32,41 @@ public:
         return res;
     }
 };
+
+/*
+方法二：Patient Game
+- 使用了二分搜索查找poker应该存放的位置
+- 牌堆数就是LIS的长度
+*/
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        // 二分搜索解法 Patient game
+        int n = nums.size();
+        vector<int> top(n); // 已有牌堆顶元素
+        int piles = 0; // 牌堆个数
+        
+        for(int i=0; i<n; i++)
+        {
+            // 需要处理的扑克数
+            int poker = nums[i];
+            // 开始二分搜索能放的位置
+            int left =0, right = piles;
+            while(left < right)
+            {
+                int mid = left+(right - left)/2;
+                if(top[mid] > poker)  // 去左边搜
+                    right = mid;
+                else if(top[mid]<poker) // 去右边搜
+                    left = mid+1;
+                else if(top[mid]==poker)
+                    right = mid;
+            }
+            // 没地方放了，自己开个新堆
+            if(left == piles) piles++;
+            top[left] = poker;
+        }
+        // 牌堆数就是LIS长度
+        return piles;
+    }
+};
