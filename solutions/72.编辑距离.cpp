@@ -32,7 +32,7 @@ public:
         {
             for(int j=1; j<=n; j++)
             {
-                if(word1[i-1] == word2[j-1])
+                if(word1[i-1] == word2[j-1]) // Attention!
                     dp[i][j] = dp[i-1][j-1];
                 else
                     dp[i][j] = minFunc(
