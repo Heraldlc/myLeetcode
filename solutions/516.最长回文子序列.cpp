@@ -15,12 +15,38 @@ public:
         // from down to up traverse
         for(int i=n-1; i>=0; i--)
         {
-            for(int j=i+1; j<n; j++)
+            for(int j=i+1; j<n; j++) // j=i+1 Attention!
             {
                 if(s[i] == s[j]) dp[i][j] = dp[i+1][j-1] +2;
-                else dp[i][j] = max(dp[i][j-1], dp[i+1][j]);
+                else dp[i][j] = max(dp[i][j-1], dp[i+1][j]); // 子序列不用+1
             }
         }
         return dp[0][n-1];
+    }
+};
+
+
+// 状态压缩的解法
+// 采用一维数组存储dp
+
+class Solution {
+public:
+    int longestPalindromeSubseq(string s) {
+        // 状态压缩解法
+        int n = s.size();
+        vector<int> dp(n, 1);
+
+        for(int i=n-2; i>=0; i--)
+        {
+            int pre =0;
+            for(int j=i+1; j<n; j++)
+            {
+                int tmp = dp[j];
+                if(s[i] == s[j]) dp[j] = pre +2;
+                else dp[j] = max(dp[j], dp[j-1]);
+                pre = tmp;
+            }
+        }
+        return dp[n-1];
     }
 };
