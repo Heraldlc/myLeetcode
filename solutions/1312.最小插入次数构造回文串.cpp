@@ -30,7 +30,7 @@ public:
     }
 };
 
-// 同样的状态压缩解法
+// 与526.同样的状态压缩解法
 class Solution {
 public:
     int minInsertions(string s) {
