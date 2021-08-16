@@ -29,3 +29,27 @@ public:
         return dp[0][n-1];
     }
 };
+
+// 同样的状态压缩解法
+class Solution {
+public:
+    int minInsertions(string s) {
+        int n = s.size();
+        vector<int> dp(n, 0);
+
+        for(int i = n-2; i>=0; i--)
+        {
+            int pre = 0;
+            for(int j=i+1; j<n; j++)
+            {
+                int tmp = dp[j];
+                if(s[i] == s[j])
+                    dp[j] = pre;
+                else
+                    dp[j] = min(dp[j], dp[j-1])+1;
+                pre = tmp;
+            }
+        }
+        return dp[n-1];
+    }
+};
