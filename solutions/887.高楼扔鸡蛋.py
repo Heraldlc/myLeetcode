@@ -1,8 +1,6 @@
-/*
-继续动规
-
-
-*/
+# 
+# 继续动规
+# 
 
 def superEggDrop(k: int, n:int):
 
