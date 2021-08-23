@@ -1,5 +1,6 @@
 /*
 plus限定，很有意思
+a cc ca cv 输出A的个数
 根据定义的dp状态不同有两种解法
 1 dp(n,a_num,copy) n表示操作数，a_num表示输出A的数量，copy表示缓冲区中A的个数
 */
