@@ -13,47 +13,11 @@
 // 即` int settlement(int n) {return ((n - 1) * (n - 2)) / 2;} `
 
 //  如何求长度
-// 给定两个指针`left`和`right`，两者构成的窗口内是一个等差数列。`right`再向右扩的过程中检查`right+1`与公差`diff`，相等就`right++`。否则`left`来到`right`的位置，`right++`，并且更新窗口内的公差。
+// 给定两个指针`left`和`right`，两者构成的窗口内是一个等差数列。
+// `right`再向右扩的过程中检查`right+1`与公差`diff`，相等就`right++`。
+//否则`left`来到`right`的位置，`right++`，并且更新窗口内的公差。
 
 
-
-class Solution {
-public:
-    int count(int n)
-    {
-        return ((n-1)*(n-2))/2;
-    }
-    
-    int numberOfArithmeticSlices(vector<int>& nums) {
-        int n = nums.size();
-        if( n<3) return 0;
-        int left = 0, right = 1;
-        int diff = nums[1] - nums[0];
-        int res = 0;
-        while(right+1 < n)
-        {
-            if(nums[right+1] - nums[right] == diff)
-            {
-                right++;
-            }
-            else
-            {
-                //结算个数
-                res += count(right - left + 1);
-                left = right;
-                right = left +1;
-                diff = nums[right] - nums[left];
-            }
-        }
-        res += count(right - left +1);
-        return res;
-    }
-};
-
-// 或者我们可以使用dp的思想
-// dp[i]表示以Nums[i]结尾的等差数组的个数
-// 如果nums[i]可以加入的话，dp[i] = dp[i-1] + 1
-// 否则应当重新计算diff差值寻找新的等差数列了
 
 class Solution {
 public:
