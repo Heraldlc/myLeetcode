@@ -1,15 +1,16 @@
 // 787.k站中转内最便宜的航班
 
 // BFS搜索模板，其中关于auto和pair<>的应用值得细细琢磨
+
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
         unordered_map<int, int> vi;
         vi[src] = 0;
 
-        unordered_map<int, vector<pair<int, int>>> fdic;
+        unordered_map<int, vector<pair<int, int>>> fdic; // 类似邻接表
         for (auto& f : flights) {
-            fdic[f[0]].emplace_back(f[1], f[2]);
+            fdic[f[0]].emplace_back(f[1], f[2]); // 建图的数据
         }
 
         queue<pair<int, int>> que;
