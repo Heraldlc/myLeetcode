@@ -65,12 +65,15 @@ public:
 
 // -----------------------------------------------------------------------
 // dp解法,转换成背包问题
+// 但这个解法无法AC，因为sum在成为负数的时候赋值操作将会失败
+// 所以需要判断sum是否大于0
 class Solution {
 public:
     // 计算nums有几个子集和为sum
     int subset(vector<int> &nums, int sum){
         int n = nums.size();
-        vector<vector<int>> dp(n+1, vector(sum+1, 0));
+        if(sum < 0) sum = -sum;
+        vector<vector<int>> dp(n+1, vector<int>(sum+1, 0));
         // base case
         for(int i=0; i<n+1; i++) dp[i][0] = 1;
         // 
