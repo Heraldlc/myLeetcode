@@ -1,5 +1,5 @@
 /*
-经典动归
+经典动归LIS
 - 定义dp[i]表示以nums[i]结尾的LIS
 - 那么数学归纳的逻辑就是取nums[i]比对之前的0->i-1
 - 如果nums[i]>nums[j]，尝试把nums[i]加入dp[j]，取较大值
