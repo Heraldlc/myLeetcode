@@ -23,3 +23,26 @@ public:
         return res;
     }
 };
+
+// 也可以以空间换时间，创建一个前缀和数组prefixSum，存放前i个元素的sum
+// 这样一段长度的元素和为prefixSum[j]-prefixSum[i]+nums[j]
+
+class Solution {
+public:
+    int sumOddLengthSubarrays(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> prefixSum(n+1, 0);
+        for(int i=1; i<=n; i++){
+            prefixSum[i] = prefixSum[i-1] + arr[i-1];
+        }
+        //int start=0;
+        int res = 0;
+        for(int i = 1; i <= n; i += 2) {
+            for(int j = 0; j < n - i + 1; j ++) {
+                // 使用前缀和
+                res += prefixSum[j + i] - prefixSum[j];
+            }
+        }
+        return res;
+    }
+};
