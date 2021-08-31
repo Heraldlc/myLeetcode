@@ -34,10 +34,10 @@ public:
                     return step;
                 }
 
-                // 找到数字的索引
+                // 找到数字0的索引
                 int index = 0;
                 for(; cur[index] != '0'; index++);
-                // 将数组0和相邻数字交换
+                // 将数字0和相邻数字交换
                 for(int adj : neighbor[index]){
                     string new_board = cur;
                     swap(new_board[adj], new_board[index]);
